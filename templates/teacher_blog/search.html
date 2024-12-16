@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row-tutorials container mt-4 p-4">
+  <h2>Пошук за <i><b>{{ query }}</b></i></h2>
+  <ul class="ps-3">
+  {% for tutorial in result %}
+    <li>
+      <a class="link fs-4" href="{% url 'detail-tutorial' tutorial.category.pk tutorial.pk %}">
+        <i>{{ tutorial.title }}</i>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+  {% if not result %}
+    <p>Нічого не знайдено</p>
+  {% endif %}
+</div>
+
+{% endblock %}

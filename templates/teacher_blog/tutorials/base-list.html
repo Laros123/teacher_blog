@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row-tutorials container mt-4 p-4"><div class="row">
+  <div class="col">
+    <h2>{{ category.title }}</h2>
+    {% if request.user.is_authenticated %}
+      <a class="link" href="{% url 'detail-category' category.pk %}">Детальніше</a>
+    {% endif %}
+    {% if tutorials %}
+    <div class="scrollable" style="margin-left: -25px; overflow:auto; max-height: 700px">
+      <ul >
+      {% for tutorial_link in tutorials %}
+        <li>
+          <a style="font-weight:500 ; font-size: 1.3rem !important ; text-shadow: #ffffff4d .75px 0 0px, #ffffff4d 0 .75px 0px, #ffffff4d -.75px 0 0px, #ffffff4d 0 -.75px 0px;" class="link" href="{% url 'detail-tutorial' tutorial_link.category.pk tutorial_link.pk %}">
+            {% if tutorial.pk == tutorial_link.pk %}<span style="font-weight: bold;">{% else %}<i>{% endif %}
+            {{ tutorial_link.title }}
+            {% if tutorial.pk == tutorial_link.pk %}</span>{% else %}</i>{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+    {% else %}
+      <h4>Навчальних матеріалів не знайдено</h4>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+      <a class="link" href="{% url 'create-tutorial' category.pk %}">+</a>
+    {% endif %}
+  </div>
+  {% block tutorial %}
+  {% endblock %}
+</div></div>
+
+{% endblock %}

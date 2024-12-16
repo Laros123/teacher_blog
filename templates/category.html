@@ -1,0 +1,14 @@
+{% for category in categories %}
+{% if category.parent is None or start is False %}
+  <div class="nav-button">
+    {% if category.child.exists %}
+      <a href="{% url 'detail-category' category.pk %}"><li class="nav-link dropdown-toggle">{{ category.title }}</li></a>
+      <div class="dropdown-content">
+        {% include 'category.html' with categories=category.child.all start=False %}
+      </div>
+    {% else %}
+      <a href="{% url 'detail-category' category.pk %}"><li class="nav-link">{{ category.title }}</li></a>
+    {% endif %}
+  </div>
+{% endif %}
+{% endfor %}

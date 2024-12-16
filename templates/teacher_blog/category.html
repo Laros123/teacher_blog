@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row-tutorials container mt-4 p-4">
+  <div style="justify-content: space-between;" class="d-flex">
+    <div style="align-items: center;" class="d-flex">
+      <h2 class="me-2">{{ category.title }}</h2>
+      {% if request.user.is_authenticated %}
+        <a class="link" class="" href="{% url 'update-category' category.pk %}">Змінити</a>
+        <form method="get" action="{% url 'create-category' %}">
+          <button type="submit" class="link me-2 a"><a>Додати підкатегорію</button>
+          <input type="hidden" name="parent" value="{{ category.pk }}">
+        </form>
+      {% endif %}
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <div class="mb-2">
+      <form action="{% url 'delete-category' category.pk %}" method="post"> {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="Видалити">
+      </form>
+    </div>
+    {% endif %}
+  </div>
+  {% if category.category_type == 'tutorials' %}
+  <a class="link" href="{% url 'list-tutorial' category.pk %}">Навчальні матеріали</a>
+  {% endif %}
+  {% if category.category_type == 'text' %}
+    {{ category.text|safe }}
+  {% endif %}
+</div>
+{% endblock %}

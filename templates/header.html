@@ -1,0 +1,27 @@
+<div class="container mx-auto">
+  <p class="header-site fs-4">Сайт учителя початкових класів</p>
+  <p class="header-name text-end">Піщета Наталія Владиславівна</p>
+</div>
+<div style="background-color: var(--header-color);">
+  <nav class="container navbar">
+    <ul class="nav me-auto mb-2 mb-lg-0">
+      {% include 'category.html' with categories=categories start=True %}
+      {% if request.user.is_authenticated %}
+        <div class="nav-button">
+          <li class="nav-link">+</li>
+          <div class="dropdown-content">
+            <form method="post" action="{% url 'create-category' %}">{% csrf_token %}
+              <div class="nav-search">
+                <input type="search" name="title" maxlength="127" required id="id_title" placeholder="Додати категорію" aria-label="Додати категорію">
+              </div>
+              <input type="hidden" name="return_to"  value="{{ request.META.HTTP_REFERER }}">
+            </form>
+          </div>
+        </div>
+      {% endif %}
+    </ul>
+    <form class="nav-search" role="search" method="get" action="{% url 'search' %}">
+      <input class="me-2" name="q" type="search" placeholder="Пошук" aria-label="Пошук">
+    </form>
+  </nav>
+</div>
