@@ -133,7 +133,7 @@ SILENCED_SYSTEM_CHECKS = [
 ]
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/static/'
+STATIC_ROOT = BASE_DIR / 'django_static'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 
 # Default primary key field type

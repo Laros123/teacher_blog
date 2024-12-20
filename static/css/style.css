@@ -1,7 +1,7 @@
 :root {
-    --header-color: #0f80c6;
-    --header-font-color-1: #18a22b;
-    --header-font-color-2: #9b270e;
+    --header-color: #704317;
+    --header-font-color-1: #116781;
+    --header-font-color-2: #ffffff;
 }
 
 @font-face {
@@ -25,12 +25,12 @@
     color: rgb(255, 255, 255);
     display: inline-block;
     border: 2px solid var(--header-color);
-    z-index: 1; /* Начальный z-index */
+    z-index: 1;
     position: sticky;
     margin-right: -2px;
     background-color: var(--header-color);
     border-color: rgba(255, 255, 255, 0);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Изначально тени нет */
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     border-radius: 5px;
     transition: transform 0.3s ease, z-index 0.2s ease, box-shadow 0.3s ease, border 0.1s, background-color 0.05s;
 }
@@ -83,26 +83,24 @@
 }
 
 .nav-button:hover {
-    z-index: 10; /* Повышаем элемент над другими при наведении */
-    transform: scale(1.1); /* Увеличиваем элемент, сохраняя его границы */
+    z-index: 10;
+    transform: scale(1.1);
     border-color: rgb(255, 255, 255);
     color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Добавляем тень при наведении */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 .nav-button:active {
-    /*transform: scale(1);  Уменьшаем элемент при нажатии */
     background-color: rgba(255, 255, 255, 0.301);
 }
 
 
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
     display: inline-block;
 }
   
-/* Dropdown Content (Hidden by Default) display: none; */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -125,10 +123,10 @@
 }
 
 .dropdown-content .dropdown-content {
-    top: 0; /* Начинать с той же высоты, что и родительский элемент */
-    left: 100%; /* Расположить второй дропдаун справа от первого */
-    min-height: 100%; /* Сделать высоту второго дропдауна такой же, как у первого */
-    z-index: 12; /* Убедиться, что он поверх всех остальных элементов */
+    top: 0;
+    left: 100%;
+    min-height: 100%;
+    z-index: 12;
 }
 
 /* Show the dropdown menu on hover */
@@ -145,9 +143,17 @@
 }
 
 
+@media (min-width: 769px) {
+    .right-tutorial-col {
+        border-left: white solid 2px;
+        margin-left: .5rem !important;
+    }
+}
 
-.right-tutorial-col {
-    border-left: white solid 2px
+@media (max-width: 769px) {
+    .right-tutorial-col {
+        width: 100% !important;
+    }
 }
 
 .right-tutorial-col > .inner {
@@ -179,8 +185,8 @@
     position: relative;
     margin-bottom: -19px;
     z-index: 2;
-    font-size:60px;
-    text-shadow: -3px 1px #ffffff;
+    font-size: 3.75rem;
+    text-shadow: -3px 1px #000000;
     color: var(--header-font-color-2);
     font-weight: bold; font-family: 'ALSFinlandiaScript', sans-serif;
 }
@@ -191,7 +197,7 @@
     right: 0;
     left: 0;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #fff;
@@ -219,7 +225,8 @@ body {
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    height: 100vh;
+    height: auto; 
+    /* 100vh */
     margin: 0;
 }
 
@@ -229,4 +236,17 @@ body {
     align-items: center; 
     justify-content: space-between;
     display: flex;
+}
+
+.footer-text {
+    mix-blend-mode: difference; 
+    color: white; 
+    font-size: 1.4vh;
+}
+
+footer {
+    position: fixed; 
+    bottom: -10px; 
+    right: 5px; 
+    margin: 2px; 
 }
